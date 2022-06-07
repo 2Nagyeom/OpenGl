@@ -5,72 +5,75 @@
 
 
 void MyLightInit( ){
-	GLfloat global_ambient[ ] = {0.1, 0.1, 0.1, 1.0};	// Àü¿ª ÁÖº¯¹İ»ç
-	// 0¹ø°ú 1¹ø Á¶¸í¸¸ ¾¸, ÃÑ 7¹ø±îÁö ÀÖÀ½
-	GLfloat light0_ambient[ ] = {0.5, 0.4, 0.3, 1.0}; 	// 0¹ø ±¤¿ø Æ¯¼º 
-	GLfloat light0_diffuse[ ] = {0.5, 0.4, 0.3, 1.0};   // È®»ê¹İ»ç¸¦ ÁÜ
-	GLfloat light0_specular[ ] = {1.0, 1.0, 1.0, 1.0};	// °æ¸é±¤À» ÁÜ( Èò»öÀ» ºÎ¿©ÇÔ )
+	GLfloat global_ambient[ ] = {0.1, 0.1, 0.1, 1.0};	// ì „ì—­ ì£¼ë³€ë°˜ì‚¬
+	// 0ë²ˆê³¼ 1ë²ˆ ì¡°ëª…ë§Œ ì”€, ì´ 7ë²ˆê¹Œì§€ ìˆìŒ
+	GLfloat light0_ambient[ ] = {0.5, 0.4, 0.3, 1.0}; 	// 0ë²ˆ ê´‘ì› íŠ¹ì„± 
+	GLfloat light0_diffuse[ ] = {0.5, 0.4, 0.3, 1.0};   // í™•ì‚°ë°˜ì‚¬ë¥¼ ì¤Œ
+	GLfloat light0_specular[ ] = {1.0, 1.0, 1.0, 1.0};	// ê²½ë©´ê´‘ì„ ì¤Œ( í°ìƒ‰ì„ ë¶€ì—¬í•¨ )
 
-	GLfloat light1_ambient[ ] =  {0.0, 0.0, 0.0, 1.0};	// 1¹ø ±¤¿ø Æ¯¼º
-	GLfloat light1_diffuse[ ] =  {0.5, 0.2, 0.3, 1.0};	// È®»ê¹İ»ç¸¦ ÁÜ (ºÓÀº Á¶¸í)
-	GLfloat light1_specular[ ] = {0.0, 0.0, 0.0, 1.0};	// °æ¸é±¤À» ÁÖÁö ¾ÊÀ½
+	GLfloat light1_ambient[ ] =  {0.0, 0.0, 0.0, 1.0};	// 1ë²ˆ ê´‘ì› íŠ¹ì„±
+	GLfloat light1_diffuse[ ] =  {0.5, 0.2, 0.3, 1.0};	// í™•ì‚°ë°˜ì‚¬ë¥¼ ì¤Œ (ë¶‰ì€ ì¡°ëª…)
+	GLfloat light1_specular[ ] = {0.0, 0.0, 0.0, 1.0};	// ê²½ë©´ê´‘ì„ ì£¼ì§€ ì•ŠìŒ
 
-	GLfloat material_ambient[ ] = {0.3, 0.3, 0.3, 1.0};		//	¹°Ã¼ Æ¯¼º
+	GLfloat material_ambient[ ] = {0.3, 0.3, 0.3, 1.0};		//	ë¬¼ì²´ íŠ¹ì„±
 	GLfloat material_diffuse[ ] =  {0.8, 0.8, 0.8, 1.0};
-	GLfloat material_specular[ ] =  {0.0, 0.0, 1.0, 1.0};	// ¹°Ã¼ÀÇ ¹İ»ç°³¼ö : ºí·ç¸¸ ÇØ´ç	 
-	GLfloat material_shininess[ ] = {25.0};		// Á¶¸í¸ğµ¨À» ¼¼¿ï¶§ Á¦°ö°ªÀ» 25·Î ÁÜ (R°ú VÀÇ ³»Àû°ªÀ» Á¦°ö)
+	GLfloat material_specular[ ] =  {0.0, 0.0, 1.0, 1.0};	// ë¬¼ì²´ì˜ ë°˜ì‚¬ê°œìˆ˜ : ë¸”ë£¨ë§Œ í•´ë‹¹	 
+	GLfloat material_shininess[ ] = {25.0};		// ì¡°ëª…ëª¨ë¸ì„ ì„¸ìš¸ë•Œ ì œê³±ê°’ì„ 25ë¡œ ì¤Œ (Rê³¼ Vì˜ ë‚´ì ê°’ì„ ì œê³±)
 
-	glShadeModel(GL_SMOOTH);		// ±¸·Î ¼ÎÀÌµù
-	glEnable(GL_DEPTH_TEST);		// ±íÀÌ ¹öÆÛ È°¼ºÈ­
-	glEnable(GL_LIGHTING);		// Á¶¸í È°¼ºÈ­
+	glShadeModel(GL_SMOOTH);		// êµ¬ë¡œ ì…°ì´ë”©
+	glEnable(GL_DEPTH_TEST);		// ê¹Šì´ ë²„í¼ í™œì„±í™”
+	glEnable(GL_LIGHTING);		// ì¡°ëª… í™œì„±í™”
 
-	glEnable(GL_LIGHT0);		// 0¹ø ±¤¿ø È°¼ºÈ­
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);	// 0¹ø ±¤¿ø Æ¯¼ºÇÒ´ç
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);	// 0¹ø È®»ê¹İ»ç¸¦ ÇÒ´ç
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light0_specular);	// 0¹ø °æ¸é±¤ ÇÒ´ç
+	glEnable(GL_LIGHT0);		// 0ë²ˆ ê´‘ì› í™œì„±í™”
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);	// 0ë²ˆ ê´‘ì› íŠ¹ì„±í• ë‹¹
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);	// 0ë²ˆ í™•ì‚°ë°˜ì‚¬ë¥¼ í• ë‹¹
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light0_specular);	// 0ë²ˆ ê²½ë©´ê´‘ í• ë‹¹
 
-	glEnable(GL_LIGHT1);		// 1¹ø ±¤¿ø È°¼ºÈ­
-	glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);	// 1¹ø ±¤¿ø Æ¯¼ºÇÒ´ç
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);	// 1¹ø È®»ê¹İ»ç¸¦ ÇÒ´ç
-	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);	// 1¹ø °æ¸é±¤ ÇÒ´ç
+	glEnable(GL_LIGHT1);		// 1ë²ˆ ê´‘ì› í™œì„±í™”
+	glLightfv(GL_LIGHT1, GL_AMBIENT, light1_ambient);	// 1ë²ˆ ê´‘ì› íŠ¹ì„±í• ë‹¹
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light1_diffuse);	// 1ë²ˆ í™•ì‚°ë°˜ì‚¬ë¥¼ í• ë‹¹
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light1_specular);	// 1ë²ˆ ê²½ë©´ê´‘ í• ë‹¹
 
-	// ¹°Ã¼ÀÇ Á¤¸é¿¡¼­ Àû¿ë½ÃÅ°°Ú´Ù.ÈÄ¸éÀº FRONTBACK
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, material_diffuse);	// ¹°Ã¼ Æ¯¼ºÇÒ´ç
+	// ë¬¼ì²´ì˜ ì •ë©´ì—ì„œ ì ìš©ì‹œí‚¤ê² ë‹¤.í›„ë©´ì€ FRONTBACK
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, material_diffuse);	// ë¬¼ì²´ íŠ¹ì„±í• ë‹¹
 	glMaterialfv(GL_FRONT, GL_SPECULAR, material_specular);	 
 	glMaterialfv(GL_FRONT, GL_AMBIENT, material_ambient);
 	glMaterialfv(GL_FRONT, GL_SHININESS, material_shininess);
 
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);	// Àü¿ªÁÖº¯¹İ»ç 
-	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);	// ±ÙÁ¢½ÃÁ¡
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);	// ì „ì—­ì£¼ë³€ë°˜ì‚¬ 
+	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);	// ê·¼ì ‘ì‹œì 
 
-	// glEnable(GL_COLOR_MATERIAL);			// glColor ·Î Á¤ÀÇµÈ »ö»óÀ» ÃßÀûÇÏ°Ô Çã¿ë
-	// glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);  // »ö»óÀÌ ¿µÇâÀ» ¹ÌÄ¡´Â ¹İ»çÀÇ ¸é ¹× Á¾·ù ÁöÁ¤
+	// glEnable(GL_COLOR_MATERIAL);			// glColor ë¡œ ì •ì˜ëœ ìƒ‰ìƒì„ ì¶”ì í•˜ê²Œ í—ˆìš©
+	// glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);  // ìƒ‰ìƒì´ ì˜í–¥ì„ ë¯¸ì¹˜ëŠ” ë°˜ì‚¬ì˜ ë©´ ë° ì¢…ë¥˜ ì§€ì •
 }
 
 void MyDisplay( ){
-	GLfloat LightPosition0[ ] = {0.0, 0.0, 2.0, 1.0};	// 0¹ø ±¤¿øÀ§Ä¡
-	GLfloat LightPosition1[ ] = {1.0, 1.0, 1.0, 1.0};	// 1¹ø ±¤¿øÀ§Ä¡
-	GLfloat LightDirection1[ ]  = {-0.5, -1.0, -1.0};	// 1¹ø ±¤¿ø ¹æÇâ
-	GLfloat SpotAngle1[ ] = {20.0};						// 1¹ø ±¤¿ø °¢µµ
+	GLfloat LightPosition0[ ] = {0.0, 0.0, 2.0, 1.0};	// 0ë²ˆ ê´‘ì›ìœ„ì¹˜
+	GLfloat LightPosition1[ ] = {1.0, 1.0, 1.0, 1.0};	// 1ë²ˆ ê´‘ì›ìœ„ì¹˜
+	GLfloat LightDirection1[ ]  = {-0.5, -1.0, -1.0};	// 1ë²ˆ ê´‘ì› ë°©í–¥
+	GLfloat SpotAngle1[ ] = {20.0};						// 1ë²ˆ ê´‘ì› ê°ë„
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW);							// ¸ğµ¨ºä Çà·Ä
-	glLoadIdentity( );									// Ç×µîÇà·Ä ·Îµå
-	gluLookAt(0.5, 0.5, 0.5, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0);	// ½ÃÁ¡º¯È¯
-	glTranslatef(0.3, 0.3, 0.0);						// ¸ğµ¨º¯È¯
-	glLightfv(GL_LIGHT0, GL_POSITION, LightPosition0);	// À§Ä¡¼º ±¤¿ø
-	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition1);	// ½ºÆ÷Æ®¶óÀÌÆ®
-	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, LightDirection1);	// ¹æÇâ
-	glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, SpotAngle1);	// °¢µµ
-	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 1.0);			// ÄÚ»çÀÎ ½Â¼ö
-	glutSolidTorus(0.3, 0.6, 800, 800);					// ¿øÈ¯Ã¼ Á¤ÀÇ
+	glMatrixMode(GL_MODELVIEW);							// ëª¨ë¸ë·° í–‰ë ¬
+	glLoadIdentity( );									// í•­ë“±í–‰ë ¬ ë¡œë“œ
+	gluLookAt(0.5, 0.5, 0.5, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0);	// ì‹œì ë³€í™˜
+	glTranslatef(0.3, 0.3, 0.0);						// ëª¨ë¸ë³€í™˜
+	glLightfv(GL_LIGHT0, GL_POSITION, LightPosition0);	// ìœ„ì¹˜ì„± ê´‘ì›
+	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition1);	// ìŠ¤í¬íŠ¸ë¼ì´íŠ¸
+	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, LightDirection1);	// ë°©í–¥
+	glLightfv(GL_LIGHT1, GL_SPOT_CUTOFF, SpotAngle1);	// ê°ë„
+	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 1.0);			// ì½”ì‚¬ì¸ ìŠ¹ìˆ˜
+	// glutSolidTorus(0.3, 0.6, 800, 800);					// ë„ë„› ìƒì„±
+	glFrontFace(GL_CCW);
+	//glutSoildTeapot(0.7);								// ì£¼ì „ì ìƒì„±
+	glutSolidShapere(0.5);
 	glFlush( );
 }
 
 void MyReshape (int w, int h){
 	glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-	glMatrixMode (GL_PROJECTION);				//	Åõ»óÇà·Ä
-	glLoadIdentity( );							//	Ç×µîÇà·Ä ·Îµå
-	glOrtho (-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);	//	ÆòÇàÅõ»ó
+	glMatrixMode (GL_PROJECTION);				//	íˆ¬ìƒí–‰ë ¬
+	glLoadIdentity( );							//	í•­ë“±í–‰ë ¬ ë¡œë“œ
+	glOrtho (-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);	//	í‰í–‰íˆ¬ìƒ
 }
 
 int main(int argc, char** argv){
